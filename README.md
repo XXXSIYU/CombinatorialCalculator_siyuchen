@@ -1,7 +1,7 @@
 # Combinatorial Calculator Gradient Color ver
 ## Combinations and Permutations Dec,2023
 ### [Specific Requirements and Detailed Conditions 🔍](https://sites.google.com/view/sjdmath/exercises/combinatorial-calculator?authuser=0)
-
+#### Depoly Site https://main--sprightly-treacle-f9f62c.netlify.app/
 
 ---
 
