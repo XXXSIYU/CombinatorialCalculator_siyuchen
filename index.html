@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="common.js"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <link rel="stylesheet" href="style.css">
+    <title>try</title>
+</head>
+
+<body>
+    <table bgcolor="c1d1c1" ; style="width: 100% ; text-align: fit;">
+        <tr id="headrow">
+            <td rowspan="3"><a
+                    href="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Image description" align="center" width="76" height="76" scale="2">
+                </a>
+            </td>
+        </tr>
+        <tr id="headrow2">
+            <td> <b><u>Permutations and Combinations</u></b> <br>
+                <font size="-1" color="887799"> by SiyuChen, siyulucy129@gmail.com, Dec, 2023 and inspired by Shyong Jian Shyu, sjshyu@gmail.com, Mar, 2019, Ver.0.8. 
+            </td>
+        </tr>
+    </table>
+    <!-- <table style="width: 100%; table-layout: fixed;"> -->
+    <table>
+        <tr bgcolor="ccddcc" ;>
+            <th>Formula
+            </th>
+            <th id="title">
+                <label for="n"><i>n</i> = </label>
+                <input type="number" id="n" value="7" min="0">
+                <br>
+                <label for="r"><i>r</i> = </label>
+                <input type="number" id="r" value="3" min="0">
+            </th>
+            <th><button type="button" class="custom-btn btn-1" onclick="computeAll()">Compute All</button>
+            </th>
+            <th>Order relevant
+            </th>
+            <th>Repetition
+            </th>
+            <th>Memo
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <label><i>P</i>(<i>n</i>, <i>r</i>)</label>
+            </td>
+            <td>
+                <span id="resPermutation"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickPerm()">Permutation</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # Permutations of size <i>r</i> from <i>n</i> distinct objects
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>C</i>(<i>n</i>, <i>r</i>)</label>
+            </td>
+            <td>
+                <span id="resCombination"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickComb()">Combination</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                <!-- <span id="memoCombination"></span> -->
+                # Selections/Combinations of size <i>r</i> from <i>n</i> distinct objects
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>n<sup>r</sup></i></label>
+            </td>
+            <td>
+                <span id="resArrangement"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickArra()">Arrangement with
+                    repetition</button>
+            </td>
+            <td>
+                <!-- <span id="orderRelevantArra"></span> -->
+                yes
+            </td>
+            <td>
+                <!-- <span id="repetitionArra"></span> -->
+                yes
+            </td>
+            <td align="left">
+                <!-- <span id="memoArrangement"></span> -->
+                # Arrangements with repetition of size <i>r</i> from <i>n</i> distinct objects
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>C</i>(<i>r</i>+<i>n</i>-1, <i>r</i>)</label>
+            </td>
+            <td>
+                <span id="resSelectrofn"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickSele()">Selection with repetition</button>
+            </td>
+            <td>
+                <!-- <span id="orderRelevantSele"></span> -->
+                no
+            </td>
+            <td>
+                <!-- <span id="repetitionSele"></span> -->
+                yes
+            </td>
+            <td align="left">
+                <!-- <span id="memoSelection"></span> -->
+                # Selections with repetition of size <i>r</i> from <i>n</i> distinct objects
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Catalan(<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resCatalan"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickCatalan()">Catalan numbers</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # A sequence of natural numbers that occur in various counting problems
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Triangular(<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resTriangular"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickTriangular()">Triangular</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # The n-th triangular number is equal to the sum of the n natural numbers from 1 to <i>n</i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Harmonic(<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resHarmonic"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickHarmonic()">Harmonic</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # The n-th harmonic number is also n times the reciprocal of the harmonic mean of the first n positive
+                integers
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Fibonacci(<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resFibonacci"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickFibonacci()">Fibonacci numbers</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # Each Fibonacci number is the sum of the two preceding numbers
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Lucas(<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resLucas"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickLucas()">Lucas</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # Each Lucas number is defined to be the sum of its two immediately previous terms
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Eulerian(<i>m</i>, <i>k</i>)</label>
+            </td>
+            <td>
+                <span id="resEulerian"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickEulerian()">Eulerian numbers</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # The number of permutations of the numbers 1 to <i>n</i> in which exactly <i>r</i> elements are greater
+                than the previous element
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>Stirling Numbers of the Second Kind</i><i></i><i></i><i></i></label>
+            </td>
+            <td>
+                <span id="resStirlingNumber"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickStirlingNumber()">Stirling Numbers of the
+                    Second Kind</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                yes
+            </td>
+            <td align="left">
+                # Count the number of ways to partition a set of <i>n</i> labelled objects into <i>r</i> nonempty
+                unlabelled subsets
+            </td>
+        </tr>
+    </table>
+
+    <!-- Bonus Table -->
+    <table>
+        <tr bgcolor="ccddcc" ;>
+            <th>Number of Distributions
+            </th>
+            <th id="title">
+                <label for="m"><i>m</i> = </label>
+                <input type="number" id="m2" value="7" min="0">
+                <br>
+                <label for="n"><i>n</i> = </label>
+                <input type="number" id="n2" value="3" min="0">
+            </th>
+            <th><button type="button" class="custom-btn btn-1" onclick="computeAll2()">Compute All</button>
+            </th>
+            <th>Distinct Objects(m)
+            </th>
+            <th>Distinct Containers(n)
+            </th>
+            <th>
+                Some Empty Containers
+            </th>
+            <th>Interpretation
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <label><i>n<sup>m</sup></i></label>
+            </td>
+            <td>
+                <span id="resNm"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickNm()">Compute</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                yes
+            </td>
+            <td align="left">
+                # Each of the <i>m</i> distinct objects can be placed into any of the <i>n</i> distinct containers.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>n!</i><i>S</i>(<i>m, </i>n) <i> </i><i>//</i><i>onto</i> (<i>m, </i>n) </label>
+            </td>
+            <td>
+                <span id="resS1"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickS1()">Compute</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                # Each of the <i>m</i> distinct object may be distributed onto any of the <i>n</i> distinct containers
+                with no containers empty.
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label><i>S</i>(<i>m</i>,1) +<i>S</i>i(<i>m</i>,2)+<i>...</i>+<i>S</i>(<i>m</i>,<i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resS2"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickS2()">Compute</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                yes
+            </td>
+            <td align="left">
+                <i>m</i> distinct objects onto 1, 2, ... ,<i>n</i> identical containers,
+                leaving no container empty
+                <i>S</i>(<i>m</i>,1)+<i>S</i>(<i>m</i>,2)+<i>...</i>+<i>S</i>(<i>m</i>,<i>n</i>)
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label><i>S</i>(<i>m</i>, <i>n</i>)</label>
+            </td>
+            <td>
+                <span id="resS3"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickS3()">Compute</button>
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                <i>m</i> distinct objects onto <i>n</i> identical containers, leaving no
+                container empty
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label>
+                    <p>\(\dbinom{m+n-1 }{m}\)</p>
+                </label>
+            </td>
+            <td>
+                <span id="resMetrix"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickMetrix()">Compute</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                yes
+            </td>
+            <td align="left">
+                Ordering food from the view of kitchen (<i>m</i> kids (identical),
+                <i>n</i> foods (distinct)); <i>m</i> identical pennies into <i>n</i> distinct
+                container; nonnegative integer solutions for an equation
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label>
+                    <p>\(\dbinom{m+n-1}{m} ( = \dbinom{m-1}{n-1} = \dbinom{(m-n)-1}{(m-n)} ) \)</p>
+                </label>
+            </td>
+            <td>
+                <span id="resMetrix2"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickMetrix2()">Compute</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                yes
+            </td>
+            <td>
+                no
+            </td>
+            <td align="left">
+                Deliver one object to each of the <i>n</i> distinct containers first,
+                then distribute <i>m</i>- <i>n</i> objects to the <i>n</i> containers
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label>
+                    <p>\\begin{cases}
+                        p(m) for n-m \\
+                        p(m,1) + p(m,2) + \ldots + p(m,n)^+ \ for\ n < m \end{cases}</p>
+                </label>
+            </td>
+            <td>
+                <span id="resParmn"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickParmn()">Compute</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                yes
+            </td>
+            <td align="left">
+                Partition integer <i>m</i> into at most <i>n</i> summands (with some 0
+                summands, corresponding to empty containers)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><i>p(m, n)</i></label>
+            </td>
+            <td>
+                <span id="resPar"></span>
+            </td>
+            <td>
+                <button type="button" class="custom-btn btn-1" onclick="clickPar()">Compute</button>
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+                no
+            </td>
+            <td>
+               no
+            </td>
+            <td align="left">
+                Partition integer <i>m</i> into exactly <i>n</i> summands (with no container empty)
+            </td>
+        </tr>
+    </table>
+    <script src="common.js"></script>
+</body>
+
+</html>
